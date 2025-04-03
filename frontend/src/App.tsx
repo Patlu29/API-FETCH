@@ -1,10 +1,9 @@
-import './App.css'
-
+import Data from "./pages/APIFetch"
 function App() {
 
   return (
     <div>
-      Hello world
+      <Data />
     </div>
   )
 }
