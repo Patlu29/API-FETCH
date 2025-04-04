@@ -3,13 +3,28 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon src/index.ts",
+    "typeorm": "typeorm-ts-node-commonjs",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "genMigration": "npx typeorm-ts-node-commonjs migration:generate -d src/data-source.ts",
+    "execMigrate": "npx typeorm-ts-node-commonjs migration:run -d src/data-source.ts",
+    "seeds": "ts-node src/seeders/seeder.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "express": "^5.1.0"
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "mysql": "^2.18.1",
+    "nodemon": "^3.1.9",
+    "typeorm": "^0.3.22"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.1",
+    "ts-node": "^10.9.2"
   }
 }
