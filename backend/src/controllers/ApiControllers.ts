@@ -34,8 +34,7 @@ export class ApiController {
         updated_at,
         pushed_at,
         language,
-      } = req.body || {}; // Use default empty object to prevent destructuring errors
-
+      } = req.body || {}; 
       const id = parseInt(req.params.id, 10); // Convert to number
 
       if (!id) {
