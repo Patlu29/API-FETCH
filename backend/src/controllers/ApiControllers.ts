@@ -9,6 +9,7 @@ export class ApiController {
   async GetAPiData(req: Request, res: Response, next: NextFunction) {
     try {
       const get = await GetAPIData();
+      console.log(req.query.code);
       res.json(get);
     } catch (error) {
       next(error);
@@ -34,7 +35,7 @@ export class ApiController {
         updated_at,
         pushed_at,
         language,
-      } = req.body || {}; 
+      } = req.body || {};
       const id = parseInt(req.params.id, 10); // Convert to number
 
       if (!id) {

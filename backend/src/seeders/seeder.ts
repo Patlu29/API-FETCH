@@ -1,6 +1,5 @@
 import axios from "axios";
 import * as dotenv from "dotenv";
-import { Response } from "express";
 import { AppDataSource } from "../data-source";
 import { API } from "../entity/API";
 
@@ -9,6 +8,7 @@ dotenv.config();
 const ApiRepo = AppDataSource.getRepository(API);
 
 interface APIDATA {
+  id: number;
   name: string;
   full_name: string;
   owner: { login: string };
@@ -18,17 +18,20 @@ interface APIDATA {
   language: string;
 }
 
-async function APIresponce() {
-  const token = process.env.GIT_TOKEN;
+async function APIresponce(value: string) {
+  const Token = value;
+  console.log(Token);
+
   try {
-    const respoce = await axios.get(
-      "https://api.github.com/orgs/crystaldelta/repos",
+    const respose = await axios.get(
+      "https://api.github.com/users/Patlu29/repos",
       {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${Token}` },
       }
     );
 
-    const data = respoce.data.map((data: APIDATA) => ({
+    const data = respose.data.map((data: APIDATA) => ({
+      id: data.id,
       name: data.name,
       full_name: data.full_name,
       login: data.owner.login,
@@ -38,20 +41,17 @@ async function APIresponce() {
       language: data.language === null ? "NULL" : data.language,
     }));
     return data;
-
-    //   res.status(200).json({ message: "data fetched" });
   } catch (err) {
     console.log(err);
   }
 }
-const PostData = async (): Promise<void> => {
+const PostData = async (value: string) => {
   try {
-    await AppDataSource.initialize();
     console.log("database connected");
 
-    const data = await APIresponce();
+    const data = await APIresponce(value);
     for (const datas of data) {
-      const exist = await ApiRepo.findOne({ where: { id: data.id } });
+      const exist = await ApiRepo.findOne({ where: { id: datas.id } });
 
       if (exist) {
         console.log("already exists");
@@ -59,6 +59,7 @@ const PostData = async (): Promise<void> => {
       }
       await ApiRepo.save(data);
     }
+    console.log(data);
 
     await ApiRepo.save(data);
     return;
@@ -67,4 +68,4 @@ const PostData = async (): Promise<void> => {
   }
 };
 
-PostData();
+export default PostData;
