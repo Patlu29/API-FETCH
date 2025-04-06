@@ -37,6 +37,6 @@ router.get("/newapi", async (req: Request, res: Response): Promise<void> => {
   const token = response.data.split("=")[1].split("&")[0];
   console.log(token, " im the original token");
   await PostData(token);
-  res.json("API fetched and posted in DB");
+  res.redirect("http://localhost:2900");
 });
 export default router;
