@@ -8,7 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "genMigration": "npx typeorm-ts-node-commonjs migration:generate -d src/data-source.ts",
     "execMigrate": "npx typeorm-ts-node-commonjs migration:run -d src/data-source.ts",
-    "seeds": "ts-node src/seeders/seeder.ts"
+    "seeds": "ts-node src/seeders/seeder.ts",
+    "tokenSeeds": "ts-node src/seeders/seeder.token.ts"
   },
   "keywords": [],
   "author": "",
@@ -20,7 +21,9 @@
     "express": "^5.1.0",
     "mysql": "^2.18.1",
     "nodemon": "^3.1.9",
-    "typeorm": "^0.3.22"
+    "querystring": "^0.2.1",
+    "typeorm": "^0.3.22",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
