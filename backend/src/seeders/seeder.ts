@@ -59,7 +59,7 @@ const PostData = async (value: string) => {
       }
       await ApiRepo.save(data);
     }
-    console.log(data);
+    // console.log(data);
 
     await ApiRepo.save(data);
     return;
