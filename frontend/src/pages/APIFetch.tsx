@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import '../styles/APIFetch.css'
 
 interface APIdata {
   id: number;
@@ -97,7 +98,7 @@ const FlightComponent = () => {
         {data.length === 0 ? (
           <p>No data available.</p>
         ) : (
-          <table style={{ width: "100%", borderCollapse: "collapse" }}>
+          <table style={{ width: "80%", borderCollapse: "collapse" }}>
             <thead>
               <tr>
                 <th align="left">ID</th>
@@ -108,6 +109,7 @@ const FlightComponent = () => {
                 <th align="left">Updated at</th>
                 <th align="left">Pushed at</th>
                 <th align="left">Language</th>
+                <th align="left">Actions</th>
               </tr>
             </thead>
             <tbody>
