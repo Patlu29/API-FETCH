@@ -23,14 +23,14 @@ async function APIresponce(value: string) {
   console.log(Token);
 
   try {
-    const respose = await axios.get(
+    const response = await axios.get(
       "https://api.github.com/users/Patlu29/repos",
       {
         headers: { Authorization: `Bearer ${Token}` },
       }
     );
 
-    const data = respose.data.map((data: APIDATA) => ({
+    const data = response.data.map((data: APIDATA) => ({
       id: data.id,
       name: data.name,
       full_name: data.full_name,
