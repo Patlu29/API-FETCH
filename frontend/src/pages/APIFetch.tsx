@@ -35,7 +35,7 @@ const FlightComponent = () => {
   const AllApiData = async () => {
     try {
       const response = await axios.get("http://localhost:3900/cd/getapi");
-      const filteredData: APIdata[] = response.data.map((post: any) => ({
+      const filteredData: APIdata[] = response.data.map((post: APIdata) => ({
         id: post.id,
         name: post.name,
         full_name: post.full_name,
