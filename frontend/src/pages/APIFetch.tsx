@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { BaseSyntheticEvent, SyntheticEvent, useEffect, useState } from "react";
 import '../styles/APIFetch.css'
 
 interface APIdata {
@@ -47,13 +47,13 @@ const FlightComponent = () => {
       }));
       setData(filteredData);
       setLoading(false);
-    } catch (err: any) {
-      setError(err.message || "Failed to fetch data");
+    } catch (err) {
+      setError(err instanceof Error ? err.message :"Failed to fetch data");
       setLoading(false);
     }
   };
 
-  const updateApi = async (e: any) => {
+  const updateApi = async (e:SyntheticEvent) => {
     e.preventDefault();
     try {
       await axios.put(`http://localhost:3900/cd/updateapi/${id}`, {
@@ -74,8 +74,8 @@ const FlightComponent = () => {
       setPushed_at("");
       setLanguage("");
       setUpdate(false)
-    } catch (err: any) {
-      setError(err.message || "Failed to update data");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to update data");
     }
   };
 
@@ -83,8 +83,8 @@ const FlightComponent = () => {
     try {
       await axios.delete(`http://localhost:3900/cd/deleteapi/${id}`);
       AllApiData();
-    } catch (err: any) {
-      setError(err.message || "Failed to Delete data");
+    } catch (err) {
+      setError(err instanceof Error ? err.message :  "Failed to Delete data");
     }
   }
 
