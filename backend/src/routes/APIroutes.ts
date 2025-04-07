@@ -2,7 +2,6 @@ import { Router } from "express";
 import { ApiController } from "../controllers/ApiControllers";
 import axios from "axios";
 import { Request, Response } from "express";
-import { v7 } from "uuid";
 import { stringify } from "querystring";
 import PostData from "../seeders/seeder";
 
@@ -17,7 +16,7 @@ router.get("/", async (req: Request, res: Response): Promise<void> => {
   const query = {
     client_id: process.env.CLIENT_ID,
     redirect_uri: process.env.REDIRECT_URI,
-    state: v7(),
+    state: "NormalState",
   };
   const tokenUrl = `https://github.com/login/oauth/authorize?${stringify(
     query
