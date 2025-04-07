@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BaseSyntheticEvent, SyntheticEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import '../styles/APIFetch.css'
 
 interface APIdata {
@@ -53,8 +53,7 @@ const FlightComponent = () => {
     }
   };
 
-  const updateApi = async (e:SyntheticEvent) => {
-    e.preventDefault();
+  const updateApi = async () => {
     try {
       await axios.put(`http://localhost:3900/cd/updateapi/${id}`, {
         name: name,
